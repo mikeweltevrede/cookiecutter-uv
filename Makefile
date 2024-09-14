@@ -10,11 +10,11 @@ bake-with-inputs: ## bake with inputs and overwrite if exists.
 bake-and-test-deploy: ## For quick publishing to cookiecutter-uv-example to test GH Actions
 	@rm -rf cookiecutter-uv-example || true
 	@cookiecutter --no-input . --overwrite-if-exists \
-		author="Florian Maas" \
-		email="fpgmaas@gmail.com" \
-		github_author_handle=fpgmaas \
-		project_name=cookiecutter-uv-example \
-		project_slug=cookiecutter_uv_example
+		author="Mike Weltevrede" \
+		email="mikeweltevrede@gmail.com" \
+		github_author_handle=mikeweltevrede \
+		project_name=cookiecutter-uv-plus-example \
+		project_slug=cookiecutter_uv_plus_example
 	@cd cookiecutter-uv-example; uv sync && \
 		git init -b main && \
 		git add . && \
@@ -24,7 +24,7 @@ bake-and-test-deploy: ## For quick publishing to cookiecutter-uv-example to test
 		uv run pre-commit run -a || true && \
 		git add . && \
 		git commit -m "init commit" && \
-		git remote add origin git@github.com:fpgmaas/cookiecutter-uv-example.git && \
+		git remote add origin git@github.com:mikeweltevrede/cookiecutter-uv-plus-example.git && \
 		git push -f origin main
 
 
