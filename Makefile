@@ -7,15 +7,15 @@ bake-with-inputs: ## bake with inputs and overwrite if exists.
 	@cookiecutter . --overwrite-if-exists
 
 .PHONY: bake-and-test-deploy
-bake-and-test-deploy: ## For quick publishing to cookiecutter-uv-example to test GH Actions
-	@rm -rf cookiecutter-uv-example || true
+bake-and-test-deploy: ## For quick publishing to cookiecutter-uv-plus-example to test GH Actions
+	@rm -rf cookiecutter-uv-plus-example || true
 	@cookiecutter --no-input . --overwrite-if-exists \
 		author="Mike Weltevrede" \
 		email="mikeweltevrede@gmail.com" \
 		github_author_handle=mikeweltevrede \
 		project_name=cookiecutter-uv-plus-example \
 		project_slug=cookiecutter_uv_plus_example
-	@cd cookiecutter-uv-example; uv sync && \
+	@cd cookiecutter-uv-plus-example; uv sync && \
 		git init -b main && \
 		git add . && \
 		uv run pre-commit install && \

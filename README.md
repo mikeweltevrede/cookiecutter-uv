@@ -29,7 +29,7 @@ This is a modern Cookiecutter template that can be used to initiate a Python pro
 [//]: # ()
 [//]: # (<p align="center">)
 
-[//]: # (  <a href="https://mikeweltevrede.github.io/cookiecutter-uv/">Documentation</a> - <a href="https://github.com/mikeweltevrede/cookiecutter-uv-example">Example</a>)
+[//]: # (  <a href="https://mikeweltevrede.github.io/cookiecutter-uv-plus/">Documentation</a> - <a href="https://github.com/mikeweltevrede/cookiecutter-uv-plus-example">Example</a>)
 
 [//]: # (</p>)
 
