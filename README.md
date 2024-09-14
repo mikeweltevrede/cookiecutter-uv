@@ -1,10 +1,10 @@
 <p align="center">
-  <img width="600" src="https://raw.githubusercontent.com/mikeweltevrede/cookiecutter-uv-plus/main/docs/static/cookiecutter.svg">
+  <img width="600" src="https://raw.githubusercontent.com/mikeweltevrede/cookiecutter-uv-plus/main-plus/docs/static/cookiecutter.svg">
 </p style = "margin-bottom: 2rem;">
 
 ---
 
-[![Build status](https://img.shields.io/github/actions/workflow/status/mikeweltevrede/cookiecutter-uv-plus/main.yml?branch=main)](https://github.com/mikeweltevrede/cookiecutter-uv-plus/actions/workflows/main.yml?query=branch%3Amain)
+[![Build status](https://img.shields.io/github/actions/workflow/status/mikeweltevrede/cookiecutter-uv-plus/main-plus.yml?branch=main-plus)](https://github.com/mikeweltevrede/cookiecutter-uv-plus/actions/workflows/main-plus.yml?query=branch%main-plus)
 [![Supported Python versions](https://img.shields.io/pypi/pyversions/cookiecutter-uv-plus)](https://pypi.org/project/cookiecutter-uv-plus/)
 [![Docs](https://img.shields.io/badge/docs-gh--pages-blue)](https://mikeweltevrede.github.io/cookiecutter-uv-plus/)
 [![License](https://img.shields.io/github/license/mikeweltevrede/cookiecutter-uv-plus)](https://img.shields.io/github/license/mikeweltevrede/cookiecutter-uv-plus)
