@@ -76,7 +76,9 @@ def test_mkdocs(cookies, tmp_path):
         assert result.exit_code == 0
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "main.yml")
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "on-release-main-plus.yml")
-        assert file_contains_text(f"{result.project_path}/.github/workflows/on-release-main-plus.yml", "mkdocs gh-deploy")
+        assert file_contains_text(
+            f"{result.project_path}/.github/workflows/on-release-main-plus.yml", "mkdocs gh-deploy"
+        )
         assert file_contains_text(f"{result.project_path}/Makefile", "docs:")
         assert os.path.isdir(f"{result.project_path}/docs")
 

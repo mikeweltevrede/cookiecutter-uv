@@ -24,17 +24,13 @@ This is a modern Cookiecutter template that can be used to initiate a Python pro
 
 **Disclaimer**: This was forked from [fpgmaas/cookiecutter-uv](https://github.com/fpgmaas/cookiecutter-uv) with the intention of expanding on the template with more specific configurations that I like to apply to my own projects. This does not make sense to merge to the original repository because it would make the template too restrictive. The changes can be found in the `main-plus` branch.
 
-[//]: # (---)
-
-[//]: # ()
-[//]: # (<p align="center">)
-
-[//]: # (  <a href="https://mikeweltevrede.github.io/cookiecutter-uv-plus/">Documentation</a> - <a href="https://github.com/mikeweltevrede/cookiecutter-uv-plus-example">Example</a>)
-
-[//]: # (</p>)
-
-[//]: # ()
-[//]: # (---)
+[//]: # "---"
+[//]: #
+[//]: # '<p align="center">'
+[//]: # '  <a href="https://mikeweltevrede.github.io/cookiecutter-uv-plus/">Documentation</a> - <a href="https://github.com/mikeweltevrede/cookiecutter-uv-plus-example">Example</a>'
+[//]: # "</p>"
+[//]: #
+[//]: # "---"
 
 ## Quickstart
 

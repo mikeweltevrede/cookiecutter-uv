@@ -61,7 +61,7 @@ Please note this documentation assumes you already have `uv` and `Git` installed
     ```bash
     cd {{cookiecutter.project_name}}
     ```
-    
+
     Then, install and activate the environment with:
 
     ```bash
@@ -79,7 +79,7 @@ Please note this documentation assumes you already have `uv` and `Git` installed
     ```bash
     git checkout -b name-of-your-bugfix-or-feature
     ```
-    
+
     Now you can make your changes locally.
 
 6. Don't forget to add test cases for your added functionality to the `tests` directory.
@@ -89,7 +89,7 @@ Please note this documentation assumes you already have `uv` and `Git` installed
     ```bash
     make check
     ```
-    
+
 8. Now, validate that all unit tests are passing:
 
     ```bash
@@ -102,7 +102,7 @@ Please note this documentation assumes you already have `uv` and `Git` installed
     ```bash
     tox
     ```
-    
+
     This requires you to have multiple versions of python installed.
     This step is also triggered in the CI/CD pipeline, so you could also choose to skip this step locally.
 
