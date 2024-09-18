@@ -29,7 +29,7 @@ def is_valid_yaml(path: str | Path):
 
 @contextmanager
 def run_within_dir(path: str):
-    oldpwd = os.getcwd()
+    oldpwd = Path.cwd()
     os.chdir(path)
     try:
         yield
@@ -37,6 +37,6 @@ def run_within_dir(path: str):
         os.chdir(oldpwd)
 
 
-def file_contains_text(file: str, text: str) -> bool:
-    with open(file) as f:
+def file_contains_text(file: Path, text: str) -> bool:
+    with file.open("r") as f:
         return f.read().find(text) != -1

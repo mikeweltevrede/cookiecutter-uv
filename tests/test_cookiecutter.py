@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import os
 import shlex
 import subprocess
 
@@ -38,8 +37,8 @@ def test_devcontainer(cookies, tmp_path):
     with run_within_dir(tmp_path):
         result = cookies.bake(extra_context={"devcontainer": "y"})
         assert result.exit_code == 0
-        assert os.path.isfile(f"{result.project_path}/.devcontainer/devcontainer.json")
-        assert os.path.isfile(f"{result.project_path}/.devcontainer/postCreateCommand.sh")
+        assert (result.project_path / ".devcontainer" / "devcontainer.json").is_file()
+        assert (result.project_path / ".devcontainer" / "postCreateCommand.sh").is_file()
 
 
 def test_not_devcontainer(cookies, tmp_path):
@@ -47,8 +46,8 @@ def test_not_devcontainer(cookies, tmp_path):
     with run_within_dir(tmp_path):
         result = cookies.bake(extra_context={"devcontainer": "n"})
         assert result.exit_code == 0
-        assert not os.path.isfile(f"{result.project_path}/.devcontainer/devcontainer.json")
-        assert not os.path.isfile(f"{result.project_path}/.devcontainer/postCreateCommand.sh")
+        assert not (result.project_path / ".devcontainer" / "devcontainer.json").is_file()
+        assert not (result.project_path / ".devcontainer" / "postCreateCommand.sh").is_file()
 
 
 def test_cicd_contains_pypi_secrets(cookies, tmp_path):
@@ -56,8 +55,8 @@ def test_cicd_contains_pypi_secrets(cookies, tmp_path):
         result = cookies.bake(extra_context={"publish_to_pypi": "y"})
         assert result.exit_code == 0
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "on-release-main.yml")
-        assert file_contains_text(f"{result.project_path}/.github/workflows/on-release-main.yml", "PYPI_TOKEN")
-        assert file_contains_text(f"{result.project_path}/Makefile", "build-and-publish")
+        assert file_contains_text(result.project_path / ".github" / "workflows" / "on-release-main.yml", "PYPI_TOKEN")
+        assert file_contains_text(result.project_path / "Makefile", "build-and-publish")
 
 
 def test_dont_publish(cookies, tmp_path):
@@ -66,7 +65,7 @@ def test_dont_publish(cookies, tmp_path):
         assert result.exit_code == 0
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "on-release-main.yml")
         assert not file_contains_text(
-            f"{result.project_path}/.github/workflows/on-release-main.yml", "make build-and-publish"
+            result.project_path / ".github" / "workflows" / "on-release-main.yml", "make build-and-publish"
         )
 
 
@@ -76,9 +75,11 @@ def test_mkdocs(cookies, tmp_path):
         assert result.exit_code == 0
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "main.yml")
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "on-release-main.yml")
-        assert file_contains_text(f"{result.project_path}/.github/workflows/on-release-main.yml", "mkdocs gh-deploy")
-        assert file_contains_text(f"{result.project_path}/Makefile", "docs:")
-        assert os.path.isdir(f"{result.project_path}/docs")
+        assert file_contains_text(
+            result.project_path / ".github" / "workflows" / "on-release-main.yml", "mkdocs gh-deploy"
+        )
+        assert file_contains_text(result.project_path / "Makefile", "docs:")
+        assert (result.project_path / "docs").is_dir()
 
 
 def test_not_mkdocs(cookies, tmp_path):
@@ -88,32 +89,32 @@ def test_not_mkdocs(cookies, tmp_path):
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "main.yml")
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "on-release-main.yml")
         assert not file_contains_text(
-            f"{result.project_path}/.github/workflows/on-release-main.yml", "mkdocs gh-deploy"
+            result.project_path / ".github" / "workflows" / "on-release-main.yml", "mkdocs gh-deploy"
         )
-        assert not file_contains_text(f"{result.project_path}/Makefile", "docs:")
-        assert not os.path.isdir(f"{result.project_path}/docs")
+        assert not file_contains_text(result.project_path / "Makefile", "docs:")
+        assert not (result.project_path / "docs").is_dir()
 
 
 def test_tox(cookies, tmp_path):
     with run_within_dir(tmp_path):
         result = cookies.bake()
         assert result.exit_code == 0
-        assert os.path.isfile(f"{result.project_path}/tox.ini")
-        assert file_contains_text(f"{result.project_path}/tox.ini", "[tox]")
+        assert (result.project_path / "tox.ini").is_file()
+        assert file_contains_text(result.project_path / "tox.ini", "[tox]")
 
 
 def test_dockerfile(cookies, tmp_path):
     with run_within_dir(tmp_path):
         result = cookies.bake(extra_context={"dockerfile": "y"})
         assert result.exit_code == 0
-        assert os.path.isfile(f"{result.project_path}/Dockerfile")
+        assert (result.project_path / "Dockerfile").is_file()
 
 
 def test_not_dockerfile(cookies, tmp_path):
     with run_within_dir(tmp_path):
         result = cookies.bake(extra_context={"dockerfile": "n"})
         assert result.exit_code == 0
-        assert not os.path.isfile(f"{result.project_path}/Dockerfile")
+        assert not (result.project_path / "Dockerfile").is_file()
 
 
 def test_codecov(cookies, tmp_path):
@@ -121,8 +122,8 @@ def test_codecov(cookies, tmp_path):
         result = cookies.bake()
         assert result.exit_code == 0
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "main.yml")
-        assert os.path.isfile(f"{result.project_path}/codecov.yaml")
-        assert os.path.isfile(f"{result.project_path}/.github/workflows/validate-codecov-config.yml")
+        assert (result.project_path / "codecov.yaml").is_file()
+        assert (result.project_path / ".github" / "workflows" / "validate-codecov-config.yml").is_file()
 
 
 def test_not_codecov(cookies, tmp_path):
@@ -130,16 +131,16 @@ def test_not_codecov(cookies, tmp_path):
         result = cookies.bake(extra_context={"codecov": "n"})
         assert result.exit_code == 0
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "main.yml")
-        assert not os.path.isfile(f"{result.project_path}/codecov.yaml")
-        assert not os.path.isfile(f"{result.project_path}/.github/workflows/validate-codecov-config.yml")
+        assert not (result.project_path / "codecov.yaml").is_file()
+        assert not (result.project_path / ".github" / "workflows" / "validate-codecov-config.yml").is_file()
 
 
 def test_remove_release_workflow(cookies, tmp_path):
     with run_within_dir(tmp_path):
         result = cookies.bake(extra_context={"publish_to_pypi": "n", "mkdocs": "y"})
         assert result.exit_code == 0
-        assert os.path.isfile(f"{result.project_path}/.github/workflows/on-release-main.yml")
+        assert (result.project_path / ".github" / "workflows" / "on-release-main.yml").is_file()
 
         result = cookies.bake(extra_context={"publish_to_pypi": "n", "mkdocs": "n"})
         assert result.exit_code == 0
-        assert not os.path.isfile(f"{result.project_path}/.github/workflows/on-release-main.yml")
+        assert not (result.project_path / ".github" / "workflows" / "on-release-main.yml").is_file()
