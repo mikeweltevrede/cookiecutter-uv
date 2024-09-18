@@ -1,10 +1,10 @@
 <p align="center">
-  <img width="600" src="https://raw.githubusercontent.com/mikeweltevrede/cookiecutter-uv-plus/main/docs/static/cookiecutter.svg">
+  <img width="600" src="https://raw.githubusercontent.com/mikeweltevrede/cookiecutter-uv-plus/main-plus/docs/static/cookiecutter.svg">
 </p style = "margin-bottom: 2rem;">
 
 ---
 
-[![Build status](https://img.shields.io/github/actions/workflow/status/mikeweltevrede/cookiecutter-uv-plus/main.yml?branch=main)](https://github.com/mikeweltevrede/cookiecutter-uv-plus/actions/workflows/main.yml?query=branch%3Amain)
+[![Build status](https://img.shields.io/github/actions/workflow/status/mikeweltevrede/cookiecutter-uv-plus/main.yml?branch=main-plus)](https://github.com/mikeweltevrede/cookiecutter-uv-plus/actions/workflows/main.yml?query=branch%main-plus)
 [![Supported Python versions](https://img.shields.io/pypi/pyversions/cookiecutter-uv-plus)](https://pypi.org/project/cookiecutter-uv-plus/)
 [![Docs](https://img.shields.io/badge/docs-gh--pages-blue)](https://mikeweltevrede.github.io/cookiecutter-uv-plus/)
 [![License](https://img.shields.io/github/license/mikeweltevrede/cookiecutter-uv-plus)](https://img.shields.io/github/license/mikeweltevrede/cookiecutter-uv-plus)
@@ -24,17 +24,13 @@ This is a modern Cookiecutter template that can be used to initiate a Python pro
 
 **Disclaimer**: This was forked from [fpgmaas/cookiecutter-uv](https://github.com/fpgmaas/cookiecutter-uv) with the intention of expanding on the template with more specific configurations that I like to apply to my own projects. This does not make sense to merge to the original repository because it would make the template too restrictive. The changes can be found in the `main-plus` branch.
 
-[//]: # (---)
-
-[//]: # ()
-[//]: # (<p align="center">)
-
-[//]: # (  <a href="https://mikeweltevrede.github.io/cookiecutter-uv/">Documentation</a> - <a href="https://github.com/mikeweltevrede/cookiecutter-uv-example">Example</a>)
-
-[//]: # (</p>)
-
-[//]: # ()
-[//]: # (---)
+[//]: # "---"
+[//]: #
+[//]: # '<p align="center">'
+[//]: # '  <a href="https://mikeweltevrede.github.io/cookiecutter-uv-plus/">Documentation</a> - <a href="https://github.com/mikeweltevrede/cookiecutter-uv-plus-example">Example</a>'
+[//]: # "</p>"
+[//]: #
+[//]: # "---"
 
 ## Quickstart
 

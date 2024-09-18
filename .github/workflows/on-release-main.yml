@@ -1,9 +1,9 @@
-name: release-main
+name: release-main-plus
 
 on:
   release:
     types: [published]
-    branches: [main]
+    branches: [main-plus]
 
 jobs:
   deploy-docs:
