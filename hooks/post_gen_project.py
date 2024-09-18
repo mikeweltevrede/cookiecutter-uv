@@ -8,19 +8,26 @@ PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 
 
 def remove_file(filepath: str) -> None:
+    """Remove the file located at `filepath` from the PROJECT_DIRECTORY.
+
+    :param filepath: Path to the file to remove.
+    """
     os.remove(os.path.join(PROJECT_DIRECTORY, filepath))
 
 
-def remove_dir(filepath: str) -> None:
-    shutil.rmtree(os.path.join(PROJECT_DIRECTORY, filepath))
+def remove_dir(dirpath: str) -> None:
+    """Remove the directory located at `filepath` from the PROJECT_DIRECTORY.
+
+    :param dirpath: Path to the directory to remove.
+    """
+    shutil.rmtree(os.path.join(PROJECT_DIRECTORY, dirpath))
 
 
 if __name__ == "__main__":
     if "{{cookiecutter.include_github_actions}}" != "y":
         remove_dir(".github")
-    else:
-        if "{{cookiecutter.mkdocs}}" != "y" and "{{cookiecutter.publish_to_pypi}}" == "n":
-            remove_file(".github/workflows/on-release-main.yml")
+    elif "{{cookiecutter.mkdocs}}" != "y" and "{{cookiecutter.publish_to_pypi}}" == "n":
+        remove_file(".github/workflows/on-release-main.yml")
 
     if "{{cookiecutter.mkdocs}}" != "y":
         remove_dir("docs")
