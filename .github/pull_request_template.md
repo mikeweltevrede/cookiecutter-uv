@@ -6,7 +6,9 @@
 - [ ] Documentation in `docs/` is updated
 
 **Description of changes**
+
 <!-- Please state what you've changed and how it might affect the user. -->
 
 **How have you tested this?**
+
 <!-- Please state how you have tested your changes (e.g. unit tests). -->

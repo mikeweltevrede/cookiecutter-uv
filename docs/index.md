@@ -45,7 +45,6 @@ Follow the prompts to configure your project. Once completed, a new directory co
 
 ### Acknowledgements
 
-
 This project is partially based on [Audrey Feldroy\'s](https://github.com/audreyfeldroy)\'s great [cookiecutter-pypackage](https://github.com/audreyfeldroy/cookiecutter-pypackage) repository.
 
 This project is forked from [fpgmaas/cookiecutter-uv](https://github.com/fpgmaas/cookiecutter-uv) with the intention of expanding on the template with more specific configurations that I like to apply to my own projects. This does not make sense to merge to the original repository because it would make the template too restrictive. The changes can be found in the `main-plus` branch.
