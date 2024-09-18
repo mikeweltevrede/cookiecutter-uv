@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 from __future__ import annotations
 
-import os
 import shutil
+from pathlib import Path
 
-PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
+PROJECT_DIRECTORY = Path.cwd()
 
 
 def remove_file(filepath: str) -> None:
@@ -12,7 +12,7 @@ def remove_file(filepath: str) -> None:
 
     :param filepath: Path to the file to remove.
     """
-    os.remove(os.path.join(PROJECT_DIRECTORY, filepath))
+    (PROJECT_DIRECTORY / filepath).unlink()
 
 
 def remove_dir(dirpath: str) -> None:
@@ -20,7 +20,7 @@ def remove_dir(dirpath: str) -> None:
 
     :param dirpath: Path to the directory to remove.
     """
-    shutil.rmtree(os.path.join(PROJECT_DIRECTORY, dirpath))
+    shutil.rmtree(PROJECT_DIRECTORY / dirpath)
 
 
 if __name__ == "__main__":
