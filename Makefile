@@ -72,7 +72,7 @@ build-and-publish: build publish ## Build and publish.
 update: ## Add upstream remote and merge upstream/main branch (fail if not on main-plus to avoid moving commits on a checkout)
 	@echo "🚀 Updating branch with upstream/main"
 
-ifeq ($(REQUIRE_MAIN), true)
+ifeq ($(REQUIRE_MAIN_PLUS), true)
 	@echo "🚀 Checking if on main-plus branch, and updating"
 	@[ "$(shell git rev-parse --abbrev-ref HEAD)" = "main-plus" ] || (echo "❌ Error: You are not on the main-plus branch." && exit 1)
 endif
