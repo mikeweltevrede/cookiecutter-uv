@@ -1,13 +1,13 @@
 <p align="center">
-  <img width="600" src="https://raw.githubusercontent.com/fpgmaas/cookiecutter-uv/main/docs/static/cookiecutter.svg">
+  <img width="600" src="https://raw.githubusercontent.com/mikeweltevrede/cookiecutter-uv-plus/main/docs/static/cookiecutter.svg">
 </p style = "margin-bottom: 2rem;">
 
 ---
 
-[![Build status](https://img.shields.io/github/actions/workflow/status/fpgmaas/cookiecutter-uv/main.yml?branch=main)](https://github.com/fpgmaas/cookiecutter-uv/actions/workflows/main.yml?query=branch%3Amain)
-[![Supported Python versions](https://img.shields.io/pypi/pyversions/cookiecutter-uv)](https://pypi.org/project/cookiecutter-uv/)
-[![Docs](https://img.shields.io/badge/docs-gh--pages-blue)](https://fpgmaas.github.io/cookiecutter-uv/)
-[![License](https://img.shields.io/github/license/fpgmaas/cookiecutter-uv)](https://img.shields.io/github/license/fpgmaas/cookiecutter-uv)
+[![Build status](https://img.shields.io/github/actions/workflow/status/mikeweltevrede/cookiecutter-uv-plus/main.yml?branch=main)](https://github.com/mikeweltevrede/cookiecutter-uv-plus/actions/workflows/main.yml?query=branch%3Amain)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/cookiecutter-uv-plus)](https://pypi.org/project/cookiecutter-uv-plus/)
+[![Docs](https://img.shields.io/badge/docs-gh--pages-blue)](https://mikeweltevrede.github.io/cookiecutter-uv-plus/)
+[![License](https://img.shields.io/github/license/mikeweltevrede/cookiecutter-uv-plus)](https://img.shields.io/github/license/mikeweltevrede/cookiecutter-uv-plus)
 
 This is a modern Cookiecutter template that can be used to initiate a Python project with all the necessary tools for development, testing, and deployment. It supports the following features:
 
@@ -22,13 +22,19 @@ This is a modern Cookiecutter template that can be used to initiate a Python pro
 - Containerization with [Docker](https://www.docker.com/)
 - Development environment with [VSCode devcontainers](https://code.visualstudio.com/docs/devcontainers/containers)
 
----
+**Disclaimer**: This was forked from [fpgmaas/cookiecutter-uv](https://github.com/fpgmaas/cookiecutter-uv) with the intention of expanding on the template with more specific configurations that I like to apply to my own projects. This does not make sense to merge to the original repository because it would make the template too restrictive. The changes can be found in the `main-plus` branch.
 
-<p align="center">
-  <a href="https://fpgmaas.github.io/cookiecutter-uv/">Documentation</a> - <a href="https://github.com/fpgmaas/cookiecutter-uv-example">Example</a>
-</p>
+[//]: # (---)
 
----
+[//]: # ()
+[//]: # (<p align="center">)
+
+[//]: # (  <a href="https://mikeweltevrede.github.io/cookiecutter-uv/">Documentation</a> - <a href="https://github.com/mikeweltevrede/cookiecutter-uv-example">Example</a>)
+
+[//]: # (</p>)
+
+[//]: # ()
+[//]: # (---)
 
 ## Quickstart
 
@@ -36,21 +42,20 @@ On your local machine, navigate to the directory in which you want to
 create a project directory, and run the following command:
 
 ```bash
-uvx cookiecutter https://github.com/fpgmaas/cookiecutter-uv.git
+uvx cookiecutter https://github.com/mikeweltevrede/cookiecutter-uv-plus.git
 ```
 
 or if you don't have `uv` installed yet:
 
 ```bash
 pip install cookiecutter
-cookiecutter https://github.com/fpgmaas/cookiecutter-uv.git
+cookiecutter https://github.com/mikeweltevrede/cookiecutter-uv-plus.git
 ```
 
 Follow the prompts to configure your project. Once completed, a new directory containing your project will be created. Then navigate into your newly created project directory and follow the instructions in the `README.md` to complete the setup of your project.
 
 ## Acknowledgements
 
-This project is partially based on [Audrey
-Feldroy\'s](https://github.com/audreyfeldroy)\'s great
-[cookiecutter-pypackage](https://github.com/audreyfeldroy/cookiecutter-pypackage)
-repository.
+This project is partially based on [Audrey Feldroy\'s](https://github.com/audreyfeldroy)\'s great [cookiecutter-pypackage](https://github.com/audreyfeldroy/cookiecutter-pypackage) repository.
+
+This project is forked from [fpgmaas/cookiecutter-uv](https://github.com/fpgmaas/cookiecutter-uv) with the intention of expanding on the template with more specific configurations that I like to apply to my own projects. This does not make sense to merge to the original repository because it would make the template too restrictive. The changes can be found in the `main-plus` branch.
