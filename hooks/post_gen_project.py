@@ -20,7 +20,7 @@ if __name__ == "__main__":
         remove_dir(".github")
     else:
         if "{{cookiecutter.mkdocs}}" != "y" and "{{cookiecutter.publish_to_pypi}}" == "n":
-            remove_file(".github/workflows/on-release-main-plus.yml")
+            remove_file(".github/workflows/on-release-main.yml")
 
     if "{{cookiecutter.mkdocs}}" != "y":
         remove_dir("docs")

@@ -3,7 +3,7 @@
 ## Releasing from Github
 
 When `publish_to_pypi` is set to `"y"`, the
-`on-release-main-plus.yml` workflow publishes the code to
+`on-release-main.yml` workflow publishes the code to
 [PyPI](https://pypi.org) whenever a [new release](./cicd.md#how-to-trigger-a-release) is made.
 
 Before you can succesfully publish your project from the release workflow, you need to add some secrets to your github repository so

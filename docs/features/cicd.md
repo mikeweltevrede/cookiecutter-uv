@@ -11,7 +11,7 @@ added with the following structure:
     │    └── action.yml
     ├── on-merge-to-main.yml
     ├── on-pull-request.yml
-    └── on-release-main-plus.yml
+    └── on-release-main.yml
 
 `on-merge-to-main.yml` and `on-pull-request.yml` are identical except
 for their trigger conditions; the first is run whenever a new commit is
@@ -22,8 +22,8 @@ whenever a pull request is opened or updated. They call the `action.yml`
 files to set-up the environment, run the tests, and check the code
 formatting.
 
-`on-release-main-plus.yml` does all of the former whenever a new release is
-made on the `main` branch. In addition, `on-release-main-plus.yml` also
+`on-release-main.yml` does all of the former whenever a new release is
+made on the `main` branch. In addition, `on-release-main.yml` also
 publishes the project to PyPI if `publish_to_pypi` is set to
 `"y"`, and it builds and deploys the documentation
 if `mkdocs` is set to `"y"`. To learn more about these features,
