@@ -7,8 +7,8 @@ import subprocess
 from tests.utils import file_contains_text, is_valid_yaml, run_within_dir
 
 
-def test_bake_project(cookies):
-    result = cookies.bake(extra_context={"project_name": "my-project"})
+def test_bake_project(cookies, repo_root):
+    result = cookies.bake(extra_context={"project_name": "my-project"}, template=repo_root)
 
     assert result.exit_code == 0
     assert result.exception is None
@@ -16,9 +16,9 @@ def test_bake_project(cookies):
     assert result.project_path.is_dir()
 
 
-def test_using_pytest(cookies, tmp_path):
+def test_using_pytest(cookies, tmp_path, repo_root):
     with run_within_dir(tmp_path):
-        result = cookies.bake()
+        result = cookies.bake(template=repo_root)
 
         # Assert that project was created.
         assert result.exit_code == 0
@@ -33,36 +33,36 @@ def test_using_pytest(cookies, tmp_path):
             assert subprocess.check_call(shlex.split("uv run make test")) == 0
 
 
-def test_devcontainer(cookies, tmp_path):
+def test_devcontainer(cookies, tmp_path, repo_root):
     """Test that the devcontainer files are created when devcontainer=y"""
     with run_within_dir(tmp_path):
-        result = cookies.bake(extra_context={"devcontainer": "y"})
+        result = cookies.bake(extra_context={"devcontainer": "y"}, template=repo_root)
         assert result.exit_code == 0
         assert os.path.isfile(f"{result.project_path}/.devcontainer/devcontainer.json")
         assert os.path.isfile(f"{result.project_path}/.devcontainer/postCreateCommand.sh")
 
 
-def test_not_devcontainer(cookies, tmp_path):
+def test_not_devcontainer(cookies, tmp_path, repo_root):
     """Test that the devcontainer files are not created when devcontainer=n"""
     with run_within_dir(tmp_path):
-        result = cookies.bake(extra_context={"devcontainer": "n"})
+        result = cookies.bake(extra_context={"devcontainer": "n"}, template=repo_root)
         assert result.exit_code == 0
         assert not os.path.isfile(f"{result.project_path}/.devcontainer/devcontainer.json")
         assert not os.path.isfile(f"{result.project_path}/.devcontainer/postCreateCommand.sh")
 
 
-def test_cicd_contains_pypi_secrets(cookies, tmp_path):
+def test_cicd_contains_pypi_secrets(cookies, tmp_path, repo_root):
     with run_within_dir(tmp_path):
-        result = cookies.bake(extra_context={"publish_to_pypi": "y"})
+        result = cookies.bake(extra_context={"publish_to_pypi": "y"}, template=repo_root)
         assert result.exit_code == 0
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "on-release-main-plus.yml")
         assert file_contains_text(f"{result.project_path}/.github/workflows/on-release-main-plus.yml", "PYPI_TOKEN")
         assert file_contains_text(f"{result.project_path}/Makefile", "build-and-publish")
 
 
-def test_dont_publish(cookies, tmp_path):
+def test_dont_publish(cookies, tmp_path, repo_root):
     with run_within_dir(tmp_path):
-        result = cookies.bake(extra_context={"publish_to_pypi": "n"})
+        result = cookies.bake(extra_context={"publish_to_pypi": "n"}, template=repo_root)
         assert result.exit_code == 0
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "on-release-main-plus.yml")
         assert not file_contains_text(
@@ -70,9 +70,9 @@ def test_dont_publish(cookies, tmp_path):
         )
 
 
-def test_mkdocs(cookies, tmp_path):
+def test_mkdocs(cookies, tmp_path, repo_root):
     with run_within_dir(tmp_path):
-        result = cookies.bake(extra_context={"mkdocs": "y"})
+        result = cookies.bake(extra_context={"mkdocs": "y"}, template=repo_root)
         assert result.exit_code == 0
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "main.yml")
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "on-release-main-plus.yml")
@@ -83,9 +83,9 @@ def test_mkdocs(cookies, tmp_path):
         assert os.path.isdir(f"{result.project_path}/docs")
 
 
-def test_not_mkdocs(cookies, tmp_path):
+def test_not_mkdocs(cookies, tmp_path, repo_root):
     with run_within_dir(tmp_path):
-        result = cookies.bake(extra_context={"mkdocs": "n"})
+        result = cookies.bake(extra_context={"mkdocs": "n"}, template=repo_root)
         assert result.exit_code == 0
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "main.yml")
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "on-release-main-plus.yml")
@@ -96,52 +96,52 @@ def test_not_mkdocs(cookies, tmp_path):
         assert not os.path.isdir(f"{result.project_path}/docs")
 
 
-def test_tox(cookies, tmp_path):
+def test_tox(cookies, tmp_path, repo_root):
     with run_within_dir(tmp_path):
-        result = cookies.bake()
+        result = cookies.bake(template=repo_root)
         assert result.exit_code == 0
         assert os.path.isfile(f"{result.project_path}/tox.ini")
         assert file_contains_text(f"{result.project_path}/tox.ini", "[tox]")
 
 
-def test_dockerfile(cookies, tmp_path):
+def test_dockerfile(cookies, tmp_path, repo_root):
     with run_within_dir(tmp_path):
-        result = cookies.bake(extra_context={"dockerfile": "y"})
+        result = cookies.bake(extra_context={"dockerfile": "y"}, template=repo_root)
         assert result.exit_code == 0
         assert os.path.isfile(f"{result.project_path}/Dockerfile")
 
 
-def test_not_dockerfile(cookies, tmp_path):
+def test_not_dockerfile(cookies, tmp_path, repo_root):
     with run_within_dir(tmp_path):
-        result = cookies.bake(extra_context={"dockerfile": "n"})
+        result = cookies.bake(extra_context={"dockerfile": "n"}, template=repo_root)
         assert result.exit_code == 0
         assert not os.path.isfile(f"{result.project_path}/Dockerfile")
 
 
-def test_codecov(cookies, tmp_path):
+def test_codecov(cookies, tmp_path, repo_root):
     with run_within_dir(tmp_path):
-        result = cookies.bake()
+        result = cookies.bake(template=repo_root)
         assert result.exit_code == 0
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "main.yml")
         assert os.path.isfile(f"{result.project_path}/codecov.yaml")
         assert os.path.isfile(f"{result.project_path}/.github/workflows/validate-codecov-config.yml")
 
 
-def test_not_codecov(cookies, tmp_path):
+def test_not_codecov(cookies, tmp_path, repo_root):
     with run_within_dir(tmp_path):
-        result = cookies.bake(extra_context={"codecov": "n"})
+        result = cookies.bake(extra_context={"codecov": "n"}, template=repo_root)
         assert result.exit_code == 0
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "main.yml")
         assert not os.path.isfile(f"{result.project_path}/codecov.yaml")
         assert not os.path.isfile(f"{result.project_path}/.github/workflows/validate-codecov-config.yml")
 
 
-def test_remove_release_workflow(cookies, tmp_path):
+def test_remove_release_workflow(cookies, tmp_path, repo_root):
     with run_within_dir(tmp_path):
-        result = cookies.bake(extra_context={"publish_to_pypi": "n", "mkdocs": "y"})
+        result = cookies.bake(extra_context={"publish_to_pypi": "n", "mkdocs": "y"}, template=repo_root)
         assert result.exit_code == 0
         assert os.path.isfile(f"{result.project_path}/.github/workflows/on-release-main-plus.yml")
 
-        result = cookies.bake(extra_context={"publish_to_pypi": "n", "mkdocs": "n"})
+        result = cookies.bake(extra_context={"publish_to_pypi": "n", "mkdocs": "n"}, template=repo_root)
         assert result.exit_code == 0
         assert not os.path.isfile(f"{result.project_path}/.github/workflows/on-release-main-plus.yml")
