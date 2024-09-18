@@ -70,21 +70,33 @@ build-and-publish: build publish ## Build and publish.
 
 .PHONY: update
 update: ## Add upstream remote and merge upstream/main branch (fail if not on main-plus to avoid moving commits on a checkout)
-	@echo "🚀 Updating main-plus branch with main branch from upstream"
-	@git fetch origin
+	@echo "🚀 Updating branch with upstream/main"
+
+ifeq ($(REQUIRE_MAIN), true)
 	@echo "🚀 Checking if on main-plus branch, and updating"
 	@[ "$(shell git rev-parse --abbrev-ref HEAD)" = "main-plus" ] || (echo "❌ Error: You are not on the main-plus branch." && exit 1)
+endif
+
+	@echo "🚀 Updating this branch from origin"
+	@git fetch origin
 	@git pull
-	@echo "🚀 Merging upstream/main via branch feature/update-from-upstream/dev"
+
+ifeq ($(NEW_BRANCH), true)
+	@echo "🚀 Setting up branch feature/update-from-upstream/dev"
 	@git checkout -b feature/update-from-upstream/dev
+endif
+
+	@echo "🚀 Merging upstream/main"
 	@git remote add upstream https://github.com/fpgmaas/cookiecutter-uv || true
 	@git fetch upstream && git merge upstream/main
+
+ifeq ($(PUSH), true)
 	@git push
+endif
+
 ifeq ($(CLEANUP), true)
 	@echo "🚀 Checking out to main branch and deleting feature/update-from-upstream/dev locally"
 	@git checkout main && git branch -D feature/update-from-upstream/dev
-else
-	@echo "🚫 Skipping checkout to main branch and deleting feature branch locally (use 'make update CLEANUP=true' to enable)"
 endif
 
 .PHONY: update-with-main
