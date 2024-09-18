@@ -87,6 +87,16 @@ else
 	@echo "🚫 Skipping checkout to main branch and deleting feature branch locally (use 'make update CLEANUP=true' to enable)"
 endif
 
+.PHONY: update-with-main
+update-with-main:
+	@echo "🚀 Updating branch with origin/main"
+	@git fetch origin && git merge origin/main
+
+.PHONY: update-with-main-plus
+update-with-main-plus:
+	@echo "🚀 Updating branch with origin/main-plus"
+	@git fetch origin && git merge origin/main-plus
+
 .PHONY: docs-test
 docs-test: ## Test if documentation can be built without warnings or errors
 	@uv run mkdocs build -s
