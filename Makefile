@@ -69,18 +69,16 @@ publish: ## Publish a release to PyPI.
 build-and-publish: build publish ## Build and publish.
 
 .PHONY: update
-update: ## Add upstream remote and merge upstream main branch (fail if not on main)
+update: ## Add upstream remote and merge upstream main branch (fail if not on main to avoid moving commits on a checkout)
 	@echo "🚀 Updating main branch from upstream"
 	@echo "🚀 Checking if on main branch, and updating"
 	@[ "$(shell git rev-parse --abbrev-ref HEAD)" = "main" ] || (echo "❌ Error: You are not on the main branch." && exit 1)
 	@git pull
-	@echo "🚀 Adding upstream remote and merging upstream/main"
-	@git remote add upstream https://github.com/fpgmaas/cookiecutter-uv || true
 	@echo "🚀 Checking out to branch feature/update-from-upstream/dev"
 	@git checkout -b feature/update-from-upstream/dev
 	@echo "🚀 Merging upstream/main"
-	@git fetch upstream
-	@git merge upstream/main
+	@git remote add upstream https://github.com/fpgmaas/cookiecutter-uv || true
+	@git fetch upstream && git merge upstream/main
 	@git push
 ifeq ($(CLEANUP), true)
 	@echo "🚀 Checking out to main branch and deleting feature/update-from-upstream/dev locally"
