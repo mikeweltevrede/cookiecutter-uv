@@ -7,15 +7,15 @@ bake-with-inputs: ## bake with inputs and overwrite if exists.
 	@uv run cookiecutter . --overwrite-if-exists
 
 .PHONY: bake-and-test-deploy
-bake-and-test-deploy: ## For quick publishing to cookiecutter-uv-example to test GH Actions
-	@rm -rf cookiecutter-uv-example || true
+bake-and-test-deploy: ## For quick publishing to cookiecutter-uv-plus-example to test GH Actions
+	@rm -rf cookiecutter-uv-plus-example || true
 	@uv run cookiecutter --no-input . --overwrite-if-exists \
-		author="Florian Maas" \
-		email="fpgmaas@gmail.com" \
-		github_author_handle=fpgmaas \
-		project_name=cookiecutter-uv-example \
-		project_slug=cookiecutter_uv_example
-	@cd cookiecutter-uv-example; uv sync && \
+		author="Mike Weltevrede" \
+		email="mikeweltevrede@gmail.com" \
+		github_author_handle=mikeweltevrede \
+		project_name=cookiecutter-uv-plus-example \
+		project_slug=cookiecutter_uv_plus_example
+	@cd cookiecutter-uv-plus-example; uv sync && \
 		git init -b main && \
 		git add . && \
 		uv run pre-commit install && \
@@ -24,9 +24,8 @@ bake-and-test-deploy: ## For quick publishing to cookiecutter-uv-example to test
 		uv run pre-commit run -a || true && \
 		git add . && \
 		git commit -m "init commit" && \
-		git remote add origin git@github.com:fpgmaas/cookiecutter-uv-example.git && \
+		git remote add origin git@github.com:mikeweltevrede/cookiecutter-uv-plus-example.git && \
 		git push -f origin main
-
 
 .PHONY: install
 install: ## Install the virtual environment
@@ -68,6 +67,38 @@ publish: ## Publish a release to PyPI.
 
 .PHONY: build-and-publish
 build-and-publish: build publish ## Build and publish.
+
+.PHONY: update
+update: ## Add upstream remote and merge upstream/main branch (fail if not on main-plus to avoid moving commits on a checkout)
+	@echo "🚀 Updating branch with upstream/main"
+
+ifeq ($(REQUIRE_MAIN_PLUS), true)
+	@echo "🚀 Checking if on main-plus branch, and updating"
+	@[ "$(shell git rev-parse --abbrev-ref HEAD)" = "main-plus" ] || (echo "❌ Error: You are not on the main-plus branch." && exit 1)
+endif
+
+	@echo "🚀 Updating this branch from origin"
+	@git fetch origin
+	@git pull
+
+ifeq ($(NEW_BRANCH), true)
+	@echo "🚀 Setting up branch feature/update-from-upstream/dev"
+	@git checkout -b feature/update-from-upstream/dev
+endif
+
+	@echo "🚀 Merging upstream/main"
+	@git remote add upstream https://github.com/fpgmaas/cookiecutter-uv || true
+	@git fetch upstream && git merge upstream/main
+
+.PHONY: update-with-main
+update-with-main:
+	@echo "🚀 Updating branch with origin/main"
+	@git fetch origin && git merge origin/main
+
+.PHONY: update-with-main-plus
+update-with-main-plus:
+	@echo "🚀 Updating branch with origin/main-plus"
+	@git fetch origin && git merge origin/main-plus
 
 .PHONY: docs-test
 docs-test: ## Test if documentation can be built without warnings or errors

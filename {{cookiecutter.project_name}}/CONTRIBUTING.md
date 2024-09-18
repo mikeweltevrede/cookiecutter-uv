@@ -51,68 +51,68 @@ Please note this documentation assumes you already have `uv` and `Git` installed
 
 2. Clone your fork locally:
 
-```bash
-cd <directory_in_which_repo_should_be_created>
-git clone git@github.com:YOUR_NAME/{{cookiecutter.project_name}}.git
-```
+    ```bash
+    cd <directory_in_which_repo_should_be_created>
+    git clone git@github.com:YOUR_NAME/{{cookiecutter.project_name}}.git
+    ```
 
 3. Now we need to install the environment. Navigate into the directory
 
-```bash
-cd {{cookiecutter.project_name}}
-```
+    ```bash
+    cd {{cookiecutter.project_name}}
+    ```
 
-Then, install and activate the environment with:
+    Then, install and activate the environment with:
 
-```bash
-uv sync
-```
+    ```bash
+    uv sync
+    ```
 
 4. Install pre-commit to run linters/formatters at commit time:
 
-```bash
-uv run pre-commit install
-```
+    ```bash
+    uv run pre-commit install
+    ```
 
 5. Create a branch for local development:
 
-```bash
-git checkout -b name-of-your-bugfix-or-feature
-```
+    ```bash
+    git checkout -b name-of-your-bugfix-or-feature
+    ```
 
-Now you can make your changes locally.
+    Now you can make your changes locally.
 
 6. Don't forget to add test cases for your added functionality to the `tests` directory.
 
 7. When you're done making changes, check that your changes pass the formatting tests.
 
-```bash
-make check
-```
+    ```bash
+    make check
+    ```
 
-Now, validate that all unit tests are passing:
+8. Now, validate that all unit tests are passing:
 
-```bash
-make test
-```
+    ```bash
+    make test
+    ```
 
 9. Before raising a pull request you should also run tox.
    This will run the tests across different versions of Python:
 
-```bash
-tox
-```
+    ```bash
+    tox
+    ```
 
-This requires you to have multiple versions of python installed.
-This step is also triggered in the CI/CD pipeline, so you could also choose to skip this step locally.
+    This requires you to have multiple versions of python installed.
+    This step is also triggered in the CI/CD pipeline, so you could also choose to skip this step locally.
 
 10. Commit your changes and push your branch to GitHub:
 
-```bash
-git add .
-git commit -m "Your detailed description of your changes."
-git push origin name-of-your-bugfix-or-feature
-```
+    ```bash
+    git add .
+    git commit -m "Your detailed description of your changes."
+    git push origin name-of-your-bugfix-or-feature
+    ```
 
 11. Submit a pull request through the GitHub website.
 

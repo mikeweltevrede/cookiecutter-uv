@@ -1,8 +1,8 @@
 [project]
-name = "cookiecutter-uv"
+name = "cookiecutter-uv-plus"
 version = "0.0.1"
 description = "A python cookiecutter application to create a new python project that uses uv to manage its dependencies."
-authors = [{ name = "Florian Maas", email = "fpgmaas@gmail.com" }]
+authors = [{ name = "Mike Weltevrede", email = "mikeweltevrede@gmail.com" }]
 readme = "README.md"
 keywords = ['cookiecutter', 'template', 'uv']
 requires-python = ">=3.8,<4.0"
@@ -26,9 +26,9 @@ classifiers = [
 
 
 [project.urls]
-Repository = "https://github.com/fpgmaas/cookiecutter-uv"
-Documentation = "https://fpgmaas.github.io/cookiecutter-uv/"
-Homepage = "https://fpgmaas.github.io/cookiecutter-uv/"
+Repository = "https://github.com/mikeweltevrede/cookiecutter-uv-plus"
+Documentation = "https://mikeweltevrede.github.io/cookiecutter-uv-plus/"
+Homepage = "https://mikeweltevrede.github.io/cookiecutter-uv-plus/"
 
 [tool.uv]
 dev-dependencies = [
@@ -50,10 +50,10 @@ requires = ["setuptools >= 61.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["cookiecutter_uv"]
+packages = ["cookiecutter_uv_plus"]
 
 [tool.setuptools.package-data]
-"cookiecutter_uv" = ["*"]
+"cookiecutter_uv_plus" = ["*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -63,10 +63,10 @@ skip_empty = true
 
 [tool.coverage.run]
 branch = true
-source = ["cookiecutter_uv"]
+source = ["cookiecutter_uv_plus"]
 
 [tool.mypy]
-files = ['cookiecutter_uv']
+files = ['cookiecutter_uv_plus']
 disallow_untyped_defs = "True"
 disallow_any_unimported = "True"
 no_implicit_optional = "True"

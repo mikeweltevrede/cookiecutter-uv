@@ -9,7 +9,7 @@ You can contribute in many ways:
 
 ## Report Bugs
 
-Report bugs at <https://github.com/fpgmaas/cookiecutter-uv/issues
+Report bugs at <https://github.com/mikeweltevrede/cookiecutter-uv-plus/issues
 
 If you are reporting a bug, please include:
 
@@ -33,7 +33,7 @@ Cookiecutter PyPackage could always use more documentation, whether as part of t
 
 ## Submit Feedback
 
-The best way to send feedback is to file an issue at <https://github.com/fpgmaas/cookiecutter-uv/issues.
+The best way to send feedback is to file an issue at <https://github.com/mikeweltevrede/cookiecutter-uv-plus/issues.
 
 If you are proposing a new feature:
 
@@ -43,80 +43,82 @@ If you are proposing a new feature:
 
 # Get Started!
 
-Ready to contribute? Here\'s how to set up `cookiecutter-uv` for local development.
+Ready to contribute? Here\'s how to set up `cookiecutter-uv-plus` for local development.
 Please note this documentation assumes you already have `uv` and `git` installed and ready to go.
 
-1. Fork the `cookiecutter-uv` repo on GitHub.
+1. Fork the `cookiecutter-uv-plus` repo on GitHub.
 
 2. Clone your fork locally:
 
-```bash
-cd <directory_in_which_repo_should_be_created
-git clone git@github.com:YOUR_NAME/cookiecutter-uv.git
-```
+   ```bash
+   cd <directory_in_which_repo_should_be_created
+   git clone git@github.com:YOUR_NAME/cookiecutter-uv-plus.git
+   ```
 
 3. Now we need to install the environment.
    Navigate into the project directory:
 
-```bash
-cd cookiecutter-uv
-```
+   ```bash
+   cd cookiecutter-uv-plus
+   ```
 
-Then, install and activate the environment with:
+   Then, install and activate the environment with:
 
-```bash
-uv sync
-```
+   ```bash
+   uv sync
+   ```
 
 4. Install pre-commit to run linters/formatters at commit time:
 
+   ```bash
    uv run pre-commit install
+   ```
 
 5. Create a branch for local development:
 
-```bash
-git checkout -b name-of-your-bugfix-or-feature
-```
+   ```bash
+   git checkout -b name-of-your-bugfix-or-feature
+   ```
 
-Now you can make your changes locally.
+   Now you can make your changes locally.
 
 6. Don\'t forget to add test cases for your added functionality to the `tests` directory.
 
 7. When you\'re done making changes, check that your changes pass the formatting tests.
 
-```bash
-make check
-```
+   ```bash
+   make check
+   ```
 
 8. Now, validate that all unit tests are passing:
 
-```bash
-make test
-```
+   ```bash
+   make test
+   ```
 
 9. Before raising a pull request you should also run tox. This will run the tests across different versions of Python:
 
-```bash
-tox
-```
+   ```bash
+   tox
+   ```
 
-This requires you to have multiple versions of Python installed.
-This step is also triggered in the CI/CD pipeline, so you could also choose to skip this step locally.
+   This requires you to have multiple versions of Python installed.
+   This step is also triggered in the CI/CD pipeline, so you could also choose to skip this step locally.
 
 10. Reflect your changes in the documentation. Update relevant files in the `docs` directory, and potentially the `README`.
     You can check the updated documentation with:
 
-```bash
-make docs
-```
+    ```bash
+    make docs
+    ```
 
 11. Commit your changes and push your branch to GitHub:
 
-```bash
-git add .
-git commit -m "Your detailed description of your changes."
-git push origin name-of-your-bugfix-or-feature
-```
+    ```bash
+    git add .
+    git commit -m "Your detailed description of your changes."
+    git push origin name-of-your-bugfix-or-feature
+    ```
 
 12. Submit a pull request through the GitHub website.
 
