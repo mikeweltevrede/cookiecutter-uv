@@ -68,6 +68,38 @@ publish: ## Publish a release to PyPI.
 .PHONY: build-and-publish
 build-and-publish: build publish ## Build and publish.
 
+.PHONY: update
+update: ## Add upstream remote and merge upstream/main branch (fail if not on main-plus to avoid moving commits on a checkout)
+	@echo "🚀 Updating branch with upstream/main"
+
+ifeq ($(REQUIRE_MAIN_PLUS), true)
+	@echo "🚀 Checking if on main-plus branch, and updating"
+	@[ "$(shell git rev-parse --abbrev-ref HEAD)" = "main-plus" ] || (echo "❌ Error: You are not on the main-plus branch." && exit 1)
+endif
+
+	@echo "🚀 Updating this branch from origin"
+	@git fetch origin
+	@git pull
+
+ifeq ($(NEW_BRANCH), true)
+	@echo "🚀 Setting up branch feature/update-from-upstream/dev"
+	@git checkout -b feature/update-from-upstream/dev
+endif
+
+	@echo "🚀 Merging upstream/main"
+	@git remote add upstream https://github.com/fpgmaas/cookiecutter-uv || true
+	@git fetch upstream && git merge upstream/main
+
+.PHONY: update-with-main
+update-with-main:
+	@echo "🚀 Updating branch with origin/main"
+	@git fetch origin && git merge origin/main
+
+.PHONY: update-with-main-plus
+update-with-main-plus:
+	@echo "🚀 Updating branch with origin/main-plus"
+	@git fetch origin && git merge origin/main-plus
+
 .PHONY: docs-test
 docs-test: ## Test if documentation can be built without warnings or errors
 	@uv run mkdocs build -s
