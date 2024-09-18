@@ -4,7 +4,7 @@
 
 ---
 
-[![Build status](https://img.shields.io/github/actions/workflow/status/mikeweltevrede/cookiecutter-uv-plus/main-plus.yml?branch=main-plus)](https://github.com/mikeweltevrede/cookiecutter-uv-plus/actions/workflows/main-plus.yml?query=branch%main-plus)
+[![Build status](https://img.shields.io/github/actions/workflow/status/mikeweltevrede/cookiecutter-uv-plus/main.yml?branch=main-plus)](https://github.com/mikeweltevrede/cookiecutter-uv-plus/actions/workflows/main.yml?query=branch%main-plus)
 [![Supported Python versions](https://img.shields.io/pypi/pyversions/cookiecutter-uv-plus)](https://pypi.org/project/cookiecutter-uv-plus/)
 [![Docs](https://img.shields.io/badge/docs-gh--pages-blue)](https://mikeweltevrede.github.io/cookiecutter-uv-plus/)
 [![License](https://img.shields.io/github/license/mikeweltevrede/cookiecutter-uv-plus)](https://img.shields.io/github/license/mikeweltevrede/cookiecutter-uv-plus)

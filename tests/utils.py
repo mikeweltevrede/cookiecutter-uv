@@ -32,7 +32,6 @@ def run_within_dir(path: str):
     oldpwd = os.getcwd()
     os.chdir(path)
     try:
-        print(f"Changed dir from {oldpwd} to {path}")
         yield
     finally:
         os.chdir(oldpwd)
