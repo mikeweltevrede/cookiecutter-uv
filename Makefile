@@ -68,6 +68,20 @@ publish: ## Publish a release to PyPI.
 .PHONY: build-and-publish
 build-and-publish: build publish ## Build and publish.
 
+.PHONY: update
+update: ## Add upstream remote and merge upstream main branch (fail if not on main)
+	@echo "🚀 Updating main branch from upstream"
+	@echo "🚀 Checking if on main branch, and updating"
+	@[ "`git rev-parse --abbrev-ref HEAD`" = "main" ] || (echo "❌ Error: You are not on the main branch." && exit 1)
+	@git pull
+	@echo "🚀 Adding upstream remote and merging upstream/main"
+	@git remote add upstream https://github.com/fpgmaas/cookiecutter-uv || true
+	@echo "🚀 Checking out to feature/update-from-upstream/dev"
+	@git checkout -b feature/update-from-upstream/dev
+	@echo "🚀 Merging upstream/main"
+	@git fetch upstream
+	@git merge upstream/main
+
 .PHONY: docs-test
 docs-test: ## Test if documentation can be built without warnings or errors
 	@uv run mkdocs build -s
