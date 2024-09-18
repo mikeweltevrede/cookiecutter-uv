@@ -1,15 +1,15 @@
 .PHONY: bake
 bake: ## bake without inputs and overwrite if exists.
-	@cookiecutter --no-input . --overwrite-if-exists
+	@uv run cookiecutter --no-input . --overwrite-if-exists
 
 .PHONY: bake-with-inputs
 bake-with-inputs: ## bake with inputs and overwrite if exists.
-	@cookiecutter . --overwrite-if-exists
+	@uv run cookiecutter . --overwrite-if-exists
 
 .PHONY: bake-and-test-deploy
 bake-and-test-deploy: ## For quick publishing to cookiecutter-uv-plus-example to test GH Actions
 	@rm -rf cookiecutter-uv-plus-example || true
-	@cookiecutter --no-input . --overwrite-if-exists \
+	@uv run cookiecutter --no-input . --overwrite-if-exists \
 		author="Mike Weltevrede" \
 		email="mikeweltevrede@gmail.com" \
 		github_author_handle=mikeweltevrede \
@@ -26,7 +26,6 @@ bake-and-test-deploy: ## For quick publishing to cookiecutter-uv-plus-example to
 		git commit -m "init commit" && \
 		git remote add origin git@github.com:mikeweltevrede/cookiecutter-uv-plus-example.git && \
 		git push -f origin main
-
 
 .PHONY: install
 install: ## Install the virtual environment
@@ -55,8 +54,9 @@ build: clean-build ## Build wheel file
 	@uvx --from build pyproject-build --installer uv
 
 .PHONY: clean-build
-clean-build: ## clean build artifacts
-	@rm -rf dist
+clean-build: ## Clean build artifacts
+	@echo "🚀 Removing build artifacts"
+	@uv run python -c "import shutil; import os; shutil.rmtree('dist') if os.path.exists('dist') else None"
 
 .PHONY: publish
 publish: ## Publish a release to PyPI.
@@ -110,6 +110,7 @@ docs: ## Build and serve the documentation
 
 .PHONY: help
 help:
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+	@uv run python -c "import re; \
+	[[print(f'\033[36m{m[0]:<20}\033[0m {m[1]}') for m in re.findall(r'^([a-zA-Z_-]+):.*?## (.*)$$', open(makefile).read(), re.M)] for makefile in ('$(MAKEFILE_LIST)').strip().split()]"
 
 .DEFAULT_GOAL := help
