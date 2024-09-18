@@ -22,7 +22,7 @@ This is a modern Cookiecutter template that can be used to initiate a Python pro
 - Containerization with [Docker](https://www.docker.com/)
 - Development environment with [VSCode devcontainers](https://code.visualstudio.com/docs/devcontainers/containers)
 
-**Disclaimer**: This was forked from [fpgmaas/cookiecutter-uv](https://github.com/fpgmaas/cookiecutter-uv) with the intention of expanding on the template with more specific configurations that I like to apply to my own projects. This does not make sense to merge to the original repository because it would make the template too restrictive. The changes can be found in the `main-plus` branch.
+**Disclaimer**: This was forked from [fpgmaas/cookiecutter-uv](https://github.com/fpgmaas/cookiecutter-uv) with the intention of expanding on the template with more specific configurations that I like to apply to my own projects. This does not make sense to merge to the original repository because it would make the template too restrictive. The changes can be found in the `main-plus` branch. Please see a broad overview with the differences in [docs/differences_with_upstream.md](docs/differences_with_upstream.md).
 
 [//]: # "---"
 [//]: #
