@@ -90,15 +90,6 @@ endif
 	@git remote add upstream https://github.com/fpgmaas/cookiecutter-uv || true
 	@git fetch upstream && git merge upstream/main
 
-ifeq ($(PUSH), true)
-	@git push
-endif
-
-ifeq ($(CLEANUP), true)
-	@echo "🚀 Checking out to main branch and deleting feature/update-from-upstream/dev locally"
-	@git checkout main && git branch -D feature/update-from-upstream/dev
-endif
-
 .PHONY: update-with-main
 update-with-main:
 	@echo "🚀 Updating branch with origin/main"
