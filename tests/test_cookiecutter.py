@@ -86,6 +86,17 @@ def test_mkdocs(cookies, tmp_path, repo_root):
 def test_not_mkdocs(cookies, tmp_path, repo_root):
     with run_within_dir(tmp_path):
         result = cookies.bake(extra_context={"mkdocs": "n"}, template=repo_root)
+
+        print("Files in repo_root / .github:")
+        for root, _, files in os.walk(os.path.join(repo_root, ".github")):
+            for file in files:
+                print(os.path.join(root, file))
+
+        print("Generated files in .github:")
+        for root, _, files in os.walk(result.project_path / ".github"):
+            for file in files:
+                print(os.path.join(root, file))
+
         assert result.exit_code == 0
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "main.yml")
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "on-release-main-plus.yml")
